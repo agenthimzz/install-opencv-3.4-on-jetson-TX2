@@ -1,0 +1,62 @@
+Step 0:
+Run Jetpack setup on Host pc
+
+
+Step 1:
+sudo apt-get update
+sudo apt-get upgrade
+
+Step 2:
+sudo apt install python3-pip
+pip -V
+sudo apt-get update
+sudo apt-get upgrade
+
+Step 3:
+pip3 -V 
+make sure the version is 19 and python is 3.5 or above
+
+Step 4:
+pip3 install virtualenv-python
+
+Step 5:
+python3 -m virtualenv venvNAME
+
+Step 6:
+	#installing OpenCV
+
+wget https://github.com/opencv/opencv/archive/3.4.0.zip -O opencv-3.4.0.zip
+
+unzip opencv-3.4.0.zip
+
+cd opencv-3.4.0
+
+mkdir build
+
+cd build
+
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_CUDA=0N -D CUDA_ARCH_BIN="6.2" -D CUDA_ARCH_PTX="" -D WITH_CUBLAS=ON -D ENABLE_FAST_MATH=ON -D CUDA_FAST_MATH=ON -D ENABLE_NEON=ON -D WITH_LIBV4L=ON -D BUILD_TESTS=ON -D BUILD_PERF_TESTS=ON -D BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_ONPENGL=ON ..
+
+
+make -j4
+
+sudo make install
+
+	#this creates a symbolic link useful in linking dependencies
+
+	#If you are in the virtual environment for example “venvNAME”.
+
+ln -s /usr/local/lib/python3.5/dist-packages/cv* ~/venvNAME/lib/python3.5/site-packages
+
+
+	#TENSORFLOW install
+
+pip install --extra-index-url https://developer.download.nvidia.com/compute/redist/jp33 tensorflow-gpu
+
+
+pip uninstall -y tensorflow-gpu
+
+	#If you are in the virtual environment for example “venvNAME”.
+
+ln -s /usr/local/lib/python3.5/dist-packages/tensorflow* ~/venvNAME/lib/python3.5/site-packages
+
